@@ -43,41 +43,47 @@ public class TheUnpaidIntern implements ArenaHero,CanMove,HasPower,HasMorality{
     @Override
     public Movement move(MoveContext context) {
 
-        // walls are where unpaid interns go to question life choices
+        // unpaid interns trapped near walls immediately panic
         if (context.isNearWall()) {
             return Movement.towardOpponent(
                     context,
-                    "🧱😨 backs away from the wall like it just assigned unpaid overtime");
+                    "🧱😨 escapes the corner after realizing dodge bonuses do not apply to emotional damage");
         }
 
-        // emotional support retreat
+        // tactical retreat when health gets dangerously low
         if (context.getMyHealth() < 25) {
             return Movement.awayFromOpponent(
                     context,
-                    "💻😭 retreats to update LinkedIn and pretend this was a learning experience");
+                    "🏃‍♂️💻 retreats to pretend this battle is 'still in testing'");
         }
 
-        // sprint toward chaos
-        if (context.getDistanceToOpponent() > 6) {
+        // if too far away, move closer for better accuracy
+        if (context.getDistanceToOpponent() > 5) {
             return Movement.towardOpponent(
                     context,
-                    "🏃‍♂️ charges forward fueled entirely by caffeine ☕");
+                    "🎯☕ rushes closer to improve hit accuracy and job security");
         }
 
-        // awkward side-step panic movement
-        if (context.getDistanceToOpponent() <= 2) {
+        // close-range side strafing for dodge bonus
+        if (context.getDistanceToOpponent() <= 3) {
 
+            // sideways/circling movement
             int sideX = -context.getDeltaYToOpponent();
             int sideY = context.getDeltaXToOpponent();
 
             return Movement.by(
                     sideX,
                     sideY,
-                    " slides sideways with the confidence of copied Stack Overflow code");
+                    "🌀🏃 circles the opponent like a confused unpaid Roomba intern");
         }
 
-        // default behavior
-        return Movement.stay(
-                "🧍‍♂️ stands completely still waiting for the build to finish");
+        // mid-range unpredictable movement
+        int zigzagX = context.getRandomXChange();
+        int zigzagY = context.getRandomYChange();
+
+        return Movement.by(
+                zigzagX,
+                zigzagY,
+                "🎲💨 moves unpredictably like code written at 2 AM before a deadline");
     }
 }
