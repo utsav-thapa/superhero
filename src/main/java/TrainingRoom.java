@@ -6,7 +6,7 @@ import java.util.Random;
 public class TrainingRoom {
     public static void main(String[] args) {
         // Change this line if you rename StarterHero to your own class name.
-        ArenaHero myHero = new StarterHero();
+        ArenaHero myHero = new TheUnpaidIntern();
 
         if (!(myHero instanceof CanMove)
                 || !(myHero instanceof HasPower)
